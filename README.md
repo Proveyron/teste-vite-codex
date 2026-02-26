@@ -19,13 +19,21 @@ npm run preview
 ## Deploy no GitHub Pages
 
 ### Opção A — Branch dedicada (`gh-pages`)
-Este projeto já está configurado com `base: '/teste-vite-codex/'` no Vite e scripts de deploy.
 
 ```bash
 npm run deploy
 ```
 
-Isso publica o build padrão (`dist`) na branch `gh-pages`.
+O comando agora é resiliente:
+
+- Se existir `origin` no Git, publica `dist` automaticamente na branch `gh-pages`.
+- Se não existir `origin` (como neste ambiente), ele **não quebra**; gera `docs/` via fallback para deploy manual em `main/docs`.
+
+Se quiser forçar o repo remoto no deploy automático:
+
+```bash
+GH_PAGES_REPO=https://github.com/<usuario>/<repo>.git npm run deploy
+```
 
 ### Opção B — Deploy from branch `main` + pasta `/docs`
 
@@ -48,4 +56,3 @@ O `vite.config.ts` está preparado para ambos os cenários via variáveis de amb
 - `VITE_OUT_DIR` (ex.: `docs`)
 
 Por padrão o projeto gera `dist`, mas para Pages em `main/docs` use `npm run build:pages`.
-> Se o nome do repositório for diferente de `teste-vite-codex`, ajuste o `base` em `vite.config.ts`.
