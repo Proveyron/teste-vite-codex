@@ -19,6 +19,7 @@ npm run preview
 ## Deploy no GitHub Pages
 
 ### Opção A — Branch dedicada (`gh-pages`)
+Este projeto já está configurado com `base: '/teste-vite-codex/'` no Vite e scripts de deploy.
 
 ```bash
 npm run deploy
@@ -47,3 +48,4 @@ O `vite.config.ts` está preparado para ambos os cenários via variáveis de amb
 - `VITE_OUT_DIR` (ex.: `docs`)
 
 Por padrão o projeto gera `dist`, mas para Pages em `main/docs` use `npm run build:pages`.
+> Se o nome do repositório for diferente de `teste-vite-codex`, ajuste o `base` em `vite.config.ts`.
